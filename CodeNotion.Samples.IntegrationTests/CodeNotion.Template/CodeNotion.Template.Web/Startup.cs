@@ -41,6 +41,7 @@ public class Startup
             .AddSingleton(_configuration.ConfigurationRoot)
             .AddBusiness(_configuration)
             .AddHttpContextAccessor()
+            .AddHealthChecks().Services
             .AddMvcCore(o =>
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -82,6 +83,7 @@ public class Startup
         app.UseStaticFiles();
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         app.UseApplicationSwagger();
+        app.UseHealthChecks("/api/health");
         app.UseMvc();
     }
 

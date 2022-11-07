@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Xunit;
+﻿using Xunit;
 
 namespace CodeNotion.Samples.IntegrationTests;
 

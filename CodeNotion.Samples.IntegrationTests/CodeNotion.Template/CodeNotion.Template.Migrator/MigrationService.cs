@@ -16,10 +16,15 @@ public class MigrationService
 {
     public static void Migrate(IServiceCollection serviceCollection, IDataConfiguration config)
     {
-        using var scope = serviceCollection.BuildServiceProvider().CreateScope();
+        Migrate(serviceCollection.BuildServiceProvider(), config);
+    }
+
+    public static void Migrate(IServiceProvider serviceProvider, IDataConfiguration config)
+    {
+        using var scope = serviceProvider.CreateScope();
         var optionBuilder = new DbContextOptionsBuilder<CodeNotionTemplateContext>().UseSqlServer(config.ConnectionString);
         var context = new MigratingContext(optionBuilder.Options);
-            
+
         Console.WriteLine("Discovering migrations...");
         var migrations = context.Database.GetPendingMigrations().ToArray();
         if (migrations.Length == 0)
