@@ -7,11 +7,11 @@ using Xunit;
 namespace CodeNotion.Samples.IntegrationTests;
 
 [Collection(SharedTestCollection.DefinitionName)]
-public class UnitTest1
+public class UnitTest2
 {
     private readonly HttpClient _client;
 
-    public UnitTest1(TestApiFactory factory)
+    public UnitTest2(TestApiFactory factory)
     {
         _client = factory.CreateClient();
     }
